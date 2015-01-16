@@ -1,0 +1,47 @@
+.container{
+	perspective: 1000;
+	}
+
+.container.active #card{
+	-webkit-transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+}
+
+.container, 
+.front, 
+.back{
+	width: 200px;
+	height: 200px;
+}
+
+#card{
+	-webkit-transition: 0.6s;
+	-webkit-transform-style: preserve-3d;
+	-moz-transition: 0.6s;
+	-moz-transform-style: preserve-3d;
+	transition: 0.6s;
+	transform-style: preserve-3d;
+}
+
+.front,
+.back{
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	backface-visibility: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.front{
+	background: red;
+	z-index: 2;
+}
+
+.back{
+	background: blue;
+	-webkit-transform: rotateY(180deg);
+	-moz-transform: rotateY(180deg);
+	transform: rotateY(180deg);
+}
