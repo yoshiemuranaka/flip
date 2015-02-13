@@ -17,40 +17,93 @@
 
 <script type='text/javascript'>
 
+	var card = {
+		config: {
+			moveLength: 0,
+			startPoint: 0,
+			endPoint: 0,
+			container: document.getElementsByClassName("container")[0]
+		},
 
-	var moveLength = 0;
+		init: function(){
+			card.config.container.addEventListener("touchstart", card.handleStart, false);
+			card.config.container.addEventListener("touchend", card.handleEnd, false);
+			card.config.container.addEventListener("touchmove", card.handleMove, false);
+		},
 
-	function init(){
-		var container = document.getElementsByClassName("container")[0];
-		// container.addEventListener("touchstart", handleStart, false);
-		container.addEventListener("touchend", handleEnd, false);
-		container.addEventListener("touchmove", handleMove, false);
-	}
+		handleStart: function(event){
+			card.config.startPoint = event.touches[0].clientX
+		},
 
-	// function handleStart(event){
-	// }
+		handleMove: function(event){
+			card.config.moveLength += 1
+		},
 
-	function handleEnd(event){
-		console.log('event end');
-		checkMoveLength(moveLength);
-		moveLength = 0; 
-	}
-
-	function handleMove(event){
-		moveLength += 1
-	}
-
-	function checkMoveLength(length){
-		if(length > 2){
-			console.log('next!')
-			$('.container').toggleClass('pink')
-		}else{
-			console.log('flip it')
-			$('.container').toggleClass('active')
+		handleEnd: function(event){
+			card.config.endPoint = event.changedTouches[0].clientX
+			card.checkMoveLength(card.config.moveLength, card.config.startPoint, card.config.endPoint);
+			card.config.moveLength = 0;
+			card.config.endPoint = 0;
+			card.config.startPoint = 0; 
+		},
+		
+		checkMoveLength: function(moveLength, startPoint, endPoint){
+			if(moveLength > 3 && (startPoint - endPoint) > 0){
+				console.log('swipe left')
+				$('.container').toggleClass('pink')
+			}else if(moveLength > 3 && (startPoint - endPoint) < 0){
+				console.log('swipe right')
+				$('.container').toggleClass('green')
+			}else{
+				console.log('flip it')
+				$('.container').toggleClass('active')
+			}
 		}
 	}
 
-	init()
+	card.init()
+
+	// var moveLength = 0;
+	// var startPoint = 0;
+	// var endPoint = 0; 
+
+	// function init(){
+	// 	var container = document.getElementsByClassName("container")[0];
+	// 	container.addEventListener("touchstart", handleStart, false);
+	// 	container.addEventListener("touchend", handleEnd, false);
+	// 	container.addEventListener("touchmove", handleMove, false);
+	// }
+
+	// function handleStart(event){
+	// 	startPoint = event.touches[0].clientX
+	// }
+
+	// function handleEnd(event){
+	// 	endPoint = event.changedTouches[0].clientX
+	// 	checkMoveLength(moveLength, startPoint, endPoint);
+	// 	moveLength = 0;
+	// 	endPoint = 0;
+	// 	startPoint = 0; 
+	// }
+
+	// function handleMove(event){
+	// 	moveLength += 1
+	// }
+
+	// function checkMoveLength(moveLength, startPoint, endPoint){
+	// 	if(moveLength > 2 && (startPoint - endPoint) > 0){
+	// 		console.log('swipe left')
+	// 		$('.container').toggleClass('pink')
+	// 	}else if(moveLength > 2 && (startPoint - endPoint) < 0){
+	// 		console.log('swipe right')
+	// 		$('.container').toggleClass('green')
+	// 	}else{
+	// 		console.log('flip it')
+	// 		$('.container').toggleClass('active')
+	// 	}
+	// }
+
+	// init()
 
 
 </script>
