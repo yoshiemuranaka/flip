@@ -10,8 +10,8 @@
 	
 	<section class="container">
 		<div id="card">
-			<div class="front">Front</div>
-			<div class="back">Back</div>
+			<div class="front"></div>
+			<div class="back"></div>
 		</div>
 	</section>
 
@@ -19,13 +19,21 @@
 
 	var card = {
 		config: {
+			id: 0,
+			// front: "",
+			// back: "",
 			moveLength: 0,
 			startPoint: 0,
 			endPoint: 0,
 			container: document.getElementsByClassName("container")[0]
 		},
 
-		init: function(){
+		init: function(data){
+			card.config.id = data.id;
+			// card.config.front = data.front;
+			// card.config.back = data.back;
+			$('.front').html(data.front);
+			$('.back').html(data.back);			
 			card.config.container.addEventListener("touchstart", card.handleStart, false);
 			card.config.container.addEventListener("touchend", card.handleEnd, false);
 			card.config.container.addEventListener("touchmove", card.handleMove, false);
@@ -60,50 +68,14 @@
 			}
 		}
 	}
+	
+	var data = {
+		id: 1,
+		front: '??',
+		back: 'answer'
+	}
 
-	card.init()
-
-	// var moveLength = 0;
-	// var startPoint = 0;
-	// var endPoint = 0; 
-
-	// function init(){
-	// 	var container = document.getElementsByClassName("container")[0];
-	// 	container.addEventListener("touchstart", handleStart, false);
-	// 	container.addEventListener("touchend", handleEnd, false);
-	// 	container.addEventListener("touchmove", handleMove, false);
-	// }
-
-	// function handleStart(event){
-	// 	startPoint = event.touches[0].clientX
-	// }
-
-	// function handleEnd(event){
-	// 	endPoint = event.changedTouches[0].clientX
-	// 	checkMoveLength(moveLength, startPoint, endPoint);
-	// 	moveLength = 0;
-	// 	endPoint = 0;
-	// 	startPoint = 0; 
-	// }
-
-	// function handleMove(event){
-	// 	moveLength += 1
-	// }
-
-	// function checkMoveLength(moveLength, startPoint, endPoint){
-	// 	if(moveLength > 2 && (startPoint - endPoint) > 0){
-	// 		console.log('swipe left')
-	// 		$('.container').toggleClass('pink')
-	// 	}else if(moveLength > 2 && (startPoint - endPoint) < 0){
-	// 		console.log('swipe right')
-	// 		$('.container').toggleClass('green')
-	// 	}else{
-	// 		console.log('flip it')
-	// 		$('.container').toggleClass('active')
-	// 	}
-	// }
-
-	// init()
+	card.init(data)
 
 
 </script>
