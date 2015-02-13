@@ -56,10 +56,10 @@
 		},
 		
 		checkMoveLength: function(moveLength, startPoint, endPoint){
-			if(moveLength > 3 && (startPoint - endPoint) > 0){
+			if(moveLength > 2 && (startPoint - endPoint) > 0){
 				console.log('swipe left')
 				$('.container').toggleClass('pink')
-			}else if(moveLength > 3 && (startPoint - endPoint) < 0){
+			}else if(moveLength > 2 && (startPoint - endPoint) < 0){
 				console.log('swipe right')
 				$('.container').toggleClass('green')
 			}else{
