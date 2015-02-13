@@ -7,7 +7,7 @@
 </head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 <body>
-	<!-- ontouchstart="this.classList.toggle('click')" -->
+	
 	<section class="container">
 		<div id="card">
 			<div class="front">Front</div>
@@ -16,32 +16,43 @@
 	</section>
 
 <script type='text/javascript'>
-	// $('.container').click(function(){
-	// 	$(this).toggleClass('active')
-	// })
 
-	function startup(){
+	var moveLength = 0;
+
+	function init(){
 		var container = document.getElementsByClassName("container")[0];
-		container.addEventListener("touchstart", handleStart, false);
+		// container.addEventListener("touchstart", handleStart, false);
 		container.addEventListener("touchend", handleEnd, false);
 		container.addEventListener("touchmove", handleMove, false);
 	}
 
-	function handleStart(event){
-		console.log(event.path[2])
-		var container = event.path[2].toggleClass('active')
-	}
+	// function handleStart(event){
+	// }
 
 	function handleEnd(event){
-		console.log('event end')
+		console.log('event end');
+		checkMoveLength(moveLength);
+		moveLength = 0; 
 	}
 
 	function handleMove(event){
-		console.log('event move')
+		moveLength += 1
 	}
 
-	startup()
+	function checkMoveLength(length){
+		if(length > 2){
+			console.log('next!')
+			$('.container').toggleClass('pink')
+		}else{
+			console.log('flip it')
+			$('.container').toggleClass('active')
+		}
+	}
+
+	init()
 </script>
 
 </body>
 </html>
+
+<!-- ontouchstart="this.classList.toggle('click') -->
