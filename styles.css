@@ -16,11 +16,11 @@
 }
 
 #card{
-	-webkit-transition: 0.6s;
+	-webkit-transition: 0.4s;
 	-webkit-transform-style: preserve-3d;
-	-moz-transition: 0.6s;
+	-moz-transition: 0.4s;
 	-moz-transform-style: preserve-3d;
-	transition: 0.6s;
+	transition: 0.4s;
 	transform-style: preserve-3d;
 }
 
@@ -34,16 +34,26 @@
 	left: 0;
 	border-radius: 20px;
 	box-shadow: 4px 2px 2px #eee;
+	text-align: center;
+	vertical-align: middle;
 }
 
 .front{
-	background: blanchedalmond;
+	background: #dde6e8;
 	z-index: 2;
 }
 
 .back{
-	background: aliceblue;
+	background: #b0e0e6;
 	-webkit-transform: rotateY(180deg);
 	-moz-transform: rotateY(180deg);
 	transform: rotateY(180deg);
+}
+
+#front-content,
+#back-content{
+	vertical-align: middle;
+	font-size: 2.5em;
+	color: grey;
+	font-family: Arial;
 }
