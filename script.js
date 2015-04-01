@@ -9,15 +9,15 @@ $(document).ready(function(){
 		dataType: "json",
 		success: function(json){ 
 		   for ( var i = 0; i < json.feed.entry.length; i++){
-		   	var front = json.feed.entry[i].content.$t.split("spanish: ")[1]
-		   	var back = json.feed.entry[i].content.$t.split(",")[0].split(": ")[1]
+		   	var back = json.feed.entry[i].content.$t.split("spanish: ")[1]
+		   	var front = json.feed.entry[i].content.$t.split(",")[0].split(": ")[1]
 			   	deck.push({
 			   		id: i,
 			   		front: front,
 			   		back: back
 			   	})
 			}
-			console.log(deck)
+
 			var card = {
 				config: {
 					id: 0,
@@ -36,7 +36,7 @@ $(document).ready(function(){
 					card.config.container.addEventListener("touchstart", card.handleStart, false);
 					card.config.container.addEventListener("touchend", card.handleEnd, false);
 					card.config.container.addEventListener("touchmove", card.handleMove, false);
-					// card.config.container.addEventListener("webkitTransitionEnd");
+					card.config.container.addEventListener("webkitTransitionEnd", function(){console.log('done!'), false});
 				},
 
 				//RECORD TOUCHSTART CONFIG
@@ -72,7 +72,6 @@ $(document).ready(function(){
 				//TOGGLE CLASS TO ANIMATE CARD FLIP WITH CSS
 				flipCard: function(){
 					$('.container').toggleClass('active')
-
 				},
 
 				//COUNTER INCREASES IF IT IS ON LAST CARD IN DECK, COUNTER RESETS TO 0/FIRST CARD IN DECK
@@ -80,8 +79,11 @@ $(document).ready(function(){
 					var container = $(".container")
 					if(container.hasClass("active")== true && card.config.id == deck.length -1){
 						card.flipCard()
-						counter = 0
-						card.init(deck[counter])
+						container.one("webkitTransitionEnd transitionend", function(){
+							counter = 0
+							card.init(deck[counter])
+						})
+						
 					}else if(card.config.id == deck.length -1){
 						counter = 0,
 						card.init(deck[counter])
