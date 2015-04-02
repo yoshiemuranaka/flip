@@ -42,7 +42,7 @@
 
 .front{
 	background: #dde6e8;
-	z-index: 2;
+	z-index: 2
 }
 
 .back{
@@ -54,8 +54,25 @@
 
 #front-content,
 #back-content{
+	position: relative;
+	top: 40%;
 	vertical-align: middle;
 	font-size: 2.5em;
 	color: grey;
 	font-family: 'Roboto', Arial, sans-serif;
+}
+
+
+.desktop-nav{
+	width: 100%;
+	text-align: center;
+}
+
+.arrow-right,
+.arrow-left{
+	display: inline-block;
+	font-size: 2.5em;
+	color: grey;
+	font-family: 'Roboto', Arial, sans-serif;
+	margin: 0 10px;
 }

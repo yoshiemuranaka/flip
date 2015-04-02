@@ -36,7 +36,7 @@ $(document).ready(function(){
 					card.config.container.addEventListener("touchstart", card.handleStart, false);
 					card.config.container.addEventListener("touchend", card.handleEnd, false);
 					card.config.container.addEventListener("touchmove", card.handleMove, false);
-					card.config.container.addEventListener("webkitTransitionEnd", function(){console.log('done!'), false});
+					//card.config.container.addEventListener("webkitTransitionEnd", function(){console.log('done!'), false});
 				},
 
 				//RECORD TOUCHSTART CONFIG
@@ -118,6 +118,10 @@ $(document).ready(function(){
 				}
 			}
 			card.init(deck[counter])
+
+			$('.arrow-right').addEventListener('click', card.swipeLeft)
+
+
 		}
 	})
 })
