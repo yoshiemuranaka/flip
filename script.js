@@ -21,18 +21,22 @@ $(document).ready(function(){
 			var card = {
 				config: {
 					id: 0,
-					front: document.getElementById("front-content"),
-					back: document.getElementById("back-content"),
+					front: $("#front-content"),
+					back: $("#back-content"),
 					moveLength: 0,
 					startPoint: 0,
 					endPoint: 0,
-					container: document.getElementsByClassName("container")[0]
+					container: $(".container")[0]
 				},
 
 				init: function(data){
 					card.config.id = data.id
-					card.config.front.innerHTML = data.front
-					card.config.back.innerHTML = data.back
+					card.config.front.text(data.front)
+					card.config.back.text(data.back)
+					card.addEventListener()
+				},
+
+				addEventListener: function(){
 					card.config.container.addEventListener("touchstart", card.handleStart, false);
 					card.config.container.addEventListener("touchend", card.handleEnd, false);
 					card.config.container.addEventListener("touchmove", card.handleMove, false);
@@ -59,9 +63,9 @@ $(document).ready(function(){
 				
 				//CHECKING THE MOVE LENGTH LOGIC TO FLIP OR SWIPE CARD
 				checkMoveLength: function(moveLength, startPoint, endPoint){
-					if(moveLength > 2 && (startPoint - endPoint) > 0){
+					if(moveLength > 3 && (startPoint - endPoint) > 0){
 						card.swipeLeft()
-					}else if(moveLength > 2 && (startPoint - endPoint) < 0){
+					}else if(moveLength > 3 && (startPoint - endPoint) < 0){
 						card.swipeRight()
 					}else{
 						card.flipCard()
@@ -76,7 +80,7 @@ $(document).ready(function(){
 				//COUNTER INCREASES IF IT IS ON LAST CARD IN DECK, COUNTER RESETS TO 0/FIRST CARD IN DECK && IF CARD IS FLIPPED ON BACK, FLIP TO FRONT FIRST
 				swipeLeft: function(){
 					var container = $(".container")
-					if(container.hasClass("active")== true && card.config.id == deck.length -1){
+					if(container.hasClass("active")&& card.config.id == deck.length -1){
 						card.flipCard()
 						container.one("webkitTransitionEnd", function(){
 							counter = 0
@@ -85,7 +89,7 @@ $(document).ready(function(){
 					}else if(card.config.id == deck.length -1){
 						counter = 0,
 						card.init(deck[counter])
-					}else if(container.hasClass("active") == true){
+					}else if(container.hasClass("active")){
 						card.flipCard()
 						container.one("webkitTransitionEnd", function(){
 							counter = card.config.id + 1
@@ -100,7 +104,7 @@ $(document).ready(function(){
 				//COUNTER DECREASES, IF IT IS THE FIRST CARD IN DECK, COUNTER RESETS TO ID OF LAST CARD IN DECK && IF CARD IS FLIPPED ON BACK, FLIP TO FRONT FIRST
 				swipeRight: function(){
 					var container = $(".container")
-					if(container.hasClass("active")==true && card.config.id == 0){
+					if(container.hasClass("active") && card.config.id == 0){
 						card.flipCard()
 						container.one("webkitTransitionEnd", function(){
 							counter = deck.length - 1
@@ -109,7 +113,7 @@ $(document).ready(function(){
 					}else if(card.config.id == 0){
 						counter = deck.length - 1
 						card.init(deck[counter])
-					}else if(container.hasClass("active") == true){
+					}else if(container.hasClass("active")){
 						card.flipCard()
 						container.one("webkitTransitionEnd", function(){
 							counter = card.config.id - 1
