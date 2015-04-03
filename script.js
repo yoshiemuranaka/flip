@@ -63,11 +63,11 @@ $(document).ready(function(){
 				
 				//CHECKING THE MOVE LENGTH LOGIC TO FLIP OR SWIPE CARD
 				checkMoveLength: function(moveLength, startPoint, endPoint){
-					if(moveLength > 3 && (startPoint - endPoint) > 0){
+					if(moveLength > 4 && (startPoint - endPoint) > 0){
 						card.swipeLeft()
-					}else if(moveLength > 3 && (startPoint - endPoint) < 0){
+					}else if(moveLength > 4 && (startPoint - endPoint) < 0){
 						card.swipeRight()
-					}else{
+					}else if(moveLength < 2){
 						card.flipCard()
 					}
 				}, 
