@@ -73,7 +73,6 @@ $(document).ready(function(){
 
 				//COUNTER INCREASES IF IT IS ON LAST CARD IN DECK, COUNTER RESETS TO 0/FIRST CARD IN DECK 
 				swipeLeft: function(){
-					var container = $(".container")
 					if(card.config.id == deck.length -1){
 						counter = 0
 						card.init(deck[counter])
@@ -85,7 +84,6 @@ $(document).ready(function(){
 
 				//COUNTER DECREASES, IF IT IS THE FIRST CARD IN DECK, COUNTER RESETS TO ID OF LAST CARD IN DECK
 				swipeRight: function(){
-					var container = $(".container")
 					if(card.config.id == 0){
 						counter = deck.length - 1
 						card.init(deck[counter])
