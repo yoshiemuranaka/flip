@@ -26,12 +26,12 @@ $(document).ready(function(){
 					card.config.container.addEventListener("touchmove", card.handleMove, false);
 				},
 
-				//RECORD TOUCHSTART CONFIG
+				//RECORD TOUCHSTART 
 				handleStart: function(event){
 					card.config.startPoint = event.touches[0].clientX
 				},
 
-				//RECORD TOUCHMOVE CONFIG
+				//RECORD TOUCHMOVE 
 				handleMove: function(event){
 					card.config.moveLength += 1
 				},
@@ -42,7 +42,7 @@ $(document).ready(function(){
 					card.checkFace()
 				},
 
-				//IF BACK OF CARD IS FACING, FLIP CARD. ELSE CHECKMOVELENGTH() AND RESET CONFIG TOUCH START, TOUCH END, MOVELENGTH
+				//IF BACK OF CARD IS FACING, FLIP CARD. ELSE CHECKMOVELENGTH() AND RESET TOUCH START, TOUCH END, MOVELENGTH
 				checkFace: function(){
 					var container = $(".container")
 					if(container.hasClass("active")){
@@ -95,7 +95,8 @@ $(document).ready(function(){
 					}
 				}
 			}
-	
+		
+
 	$.ajax({ 
 		url: 'http://spreadsheets.google.com/feeds/list/1LwDXCgq8PCbuSp4wfe-gaMxR4oRk5resFyRUkWajXGE/1/public/basic?alt=json',
 		type: 'get',
@@ -110,7 +111,6 @@ $(document).ready(function(){
 			   		back: back
 			   	})
 			}
-
 			card.init(deck[counter])
 		}
 	})
