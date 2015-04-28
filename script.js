@@ -24,6 +24,9 @@ $(document).ready(function(){
 					card.config.container.addEventListener("touchstart", card.handleStart, false);
 					card.config.container.addEventListener("touchend", card.handleEnd, false);
 					card.config.container.addEventListener("touchmove", card.handleMove, false);
+					$(".arrow-right").on("click", card.swipeLeft);
+					$(".arrow-left").on("click", card.swipeRight);
+					$(".icon-flip").on("click", card.flipCard);
 				},
 
 				//RECORD TOUCHSTART 
