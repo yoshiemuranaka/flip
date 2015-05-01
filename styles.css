@@ -58,7 +58,7 @@
 	top: 40%;
 	vertical-align: middle;
 	font-size: 2.5em;
-	color: grey;
+	color: #4aae83;
 	font-family: 'Roboto', Arial, sans-serif;
 }
 
@@ -69,15 +69,24 @@
 	color: #eee;
 }
 
-.icon-flip,
-.arrow-right,
-.arrow-left{
+#icon-flip,
+#icon-right,
+#icon-left{
 	display: inline-block;
 	font-size: 2.5em;
-	color: grey;
+	color: #4aae83;
 	font-family: 'Roboto', Arial, sans-serif;
 	margin: 0 10px;
 	cursor: pointer;
+	vertical-align: top;
+	font-weight: bold;
+}
+
+#icon-flip:hover,
+#icon-right:hover,
+#icon-left:hover{
+	padding-top: 2px;
+	color: #3b8b68;
 }
 
 @media (min-width: 500px){

@@ -10,23 +10,28 @@ $(document).ready(function(){
 					moveLength: 0,
 					startPoint: 0,
 					endPoint: 0,
-					container: $(".container")[0]
+					container: $(".container")[0],
+					iconRight: $("#icon-right")[0],
+					iconLeft: $("#icon-left")[0],
+					iconFlip: $("#icon-flip")[0]
 				},
 
 				init: function(data){
-					card.config.id = data.id
-					card.config.front.text(data.front)
-					card.config.back.text(data.back)
+					var c = card.config
+					c.id = data.id
+					c.front.text(data.front)
+					c.back.text(data.back)
 					card.addEventListeners()
 				},
 
 				addEventListeners: function(){
-					card.config.container.addEventListener("touchstart", card.handleStart, false);
-					card.config.container.addEventListener("touchend", card.handleEnd, false);
-					card.config.container.addEventListener("touchmove", card.handleMove, false);
-					$(".arrow-right").on("click", card.swipeLeft);
-					$(".arrow-left").on("click", card.swipeRight);
-					$(".icon-flip").on("click", card.flipCard);
+					var c = card.config
+					c.container.addEventListener("touchstart", card.handleStart, false);
+					c.container.addEventListener("touchend", card.handleEnd, false);
+					c.container.addEventListener("touchmove", card.handleMove, false);
+					c.iconRight.addEventListener("click", card.swipeLeft)
+					c.iconLeft.addEventListener("click", card.swipeRight)
+					c.iconFlip.addEventListener("click", card.flipCard)
 				},
 
 				//RECORD TOUCHSTART 
@@ -48,13 +53,14 @@ $(document).ready(function(){
 				//IF BACK OF CARD IS FACING, FLIP CARD. ELSE CHECKMOVELENGTH() AND RESET TOUCH START, TOUCH END, MOVELENGTH
 				checkFace: function(){
 					var container = $(".container")
+					var c = card.config
 					if(container.hasClass("active")){
 						card.flipCard()
 					}else{
 						card.checkMoveLength(card.config.moveLength, card.config.startPoint, card.config.endPoint);
-						card.config.moveLength = 0;
-						card.config.endPoint = 0;
-						card.config.startPoint = 0; 
+						c.moveLength = 0;
+						c.endPoint = 0;
+						c.startPoint = 0; 
 					}
 				},
 				
